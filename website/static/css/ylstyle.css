@@ -39,7 +39,7 @@
 }
 
 .card:hover {
-    border: 2px solid rgb(254, 229, 153);
+    border: 4px solid rgb(254, 229, 153);
 }
 
 .card-title {
@@ -71,8 +71,6 @@
 
 .modal-title {
     font-size: 30px;
-
-
 }
 
 .like {
@@ -83,4 +81,18 @@
     background-color: white;
     border-radius: 5px;
     flex-direction: row
+}
+
+.modal-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-info>p {
+    margin: 0px auto 20px 10px;
+}
+
+.modal-info>img {
+    width: 200px;
+    height: 200px;
 }

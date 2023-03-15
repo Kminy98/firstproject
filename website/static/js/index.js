@@ -136,7 +136,7 @@ function show_comment() {
                                 <td class="control_wrap"><input class="chk_pw" class="form-control form-control-sm" type="password" placeholder="비밀번호"
                                 aria-label=".form-control-sm example"><input type="button" class="control_btn" id="delete" onclick="delete_comment(this)" value="삭제"><input type="button" class="control_btn" id="edit_comment" onclick="edit_chk(this)" value="수정"></td>
                             </tr>`
-            $('#comment>tbody').append(temp_html)
+            $('#comment_table>tbody').append(temp_html)
         })
     })
 }
