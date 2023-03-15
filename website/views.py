@@ -83,7 +83,7 @@ def comment_del():
         return jsonify({'msg': '삭제 완료!'})
     
 @app.route("/comment3", methods=["POST"])
-def comment_edit():
+def comment_pwd_check():
     index_receive= request.form["index_give"]
     index2= int(index_receive)
 
@@ -94,6 +94,16 @@ def comment_edit():
         return jsonify({'msg': '수정 실패!'})
     else:
         return jsonify({'result': 'True'})
+
+@app.route("/comment_edit", methods=["POST"])
+def comment_edit():
+    index_receive= request.form["index_give"]
+    index= int(index_receive)
+    pw = request.form["pw_give"]
+    comment_data = request.form["edit_give"]
+
+    col.update_one({'index':index,'pw':pw},{'$set':{'comment':comment_data}})
+    return jsonify({'msg': 'True'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

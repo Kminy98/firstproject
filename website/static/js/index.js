@@ -128,8 +128,8 @@ function show_comment() {
                                 aria-label=".form-control-sm example"><input type="button" class="control_btn" id="delete" onclick="delete_comment(this)" value="삭제"><input type="button" class="control_btn" id="edit_comment" onclick="edit_chk(this)" value="수정"></td>
                             </tr>`
             $('#comment>tbody').append(temp_html)
-        });
-    });
+        })
+    })
 }
 
 function submit() {
@@ -154,7 +154,7 @@ function save_comment() {
     fetch('/comment', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
         alert(data["msg"])
         window.location.reload()
-    });
+    })
 }
 
 
@@ -168,7 +168,7 @@ function delete_comment(btn) {
     fetch('/comment2', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
         alert(data["msg"])
         window.location.reload()
-    });
+    })
 }
 
 function edit_chk(btn) {
@@ -184,13 +184,37 @@ function edit_chk(btn) {
             alert(data["msg"])
         }
         else {
-            let temp_html =
-                edit_confirm(tr, index, pwd)
+            let temp_html = `<input type="button" class="control_btn" id="edit_comment" onclick="edit_confirm(this)" value="확인">`
+            tr.querySelector('#edit_comment').remove()
+            tr.querySelector('.control_btn').insertAdjacentHTML('afterend', temp_html)
+
+            cmt_data = tr.querySelector('.cmt_data').innerText
+            let temp_textarea = `<textarea class="form-control comment_edit" placeholder="코멘트를 남겨주세요" id="floatingTextarea">${cmt_data}</textarea>`
+            tr.querySelector('.cmt_data').innerHTML = temp_textarea
+            tr.querySelector('.chk_pw').setAttribute('readonly', 'readonly')
         }
-    });
+    })
 
 }
 
-function edit_confirm(tr, index, pwd) {
-    console.log(tr, index);
+function edit_confirm(btn) {
+    let tr = btn.closest('tr');
+    let index = tr.querySelector('td:first-child').textContent
+    let edit_data = tr.querySelector('.comment_edit').value
+    let pwd = tr.querySelector('.chk_pw').value
+
+    if (edit_data == '') {
+        alert('문자를 입력해주세요!')
+    }
+    else {
+        let formData = new FormData()
+        formData.append("index_give", index)
+        formData.append('edit_give', edit_data)
+        formData.append('pw_give', pwd)
+        fetch('/comment_edit', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+            alert(data["msg"])
+            window.location.reload()
+        })
+    }
 }
+

@@ -39,6 +39,11 @@ textarea {
 #delete:hover{
     background-color: #d30000;
 }
+.comment_edit{
+    height:32px !important;
+    padding: 0px;
+    margin-top:-6px;
+}
 .cmt_wrap{
     width:100%;
     display: flex;
