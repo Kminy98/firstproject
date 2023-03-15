@@ -12,7 +12,7 @@ col = db.user
 def home():
     return render_template('index.html')
 
-
+# test
 
  #-----양예린----  
 @app.route("/member", methods=["POST"])
