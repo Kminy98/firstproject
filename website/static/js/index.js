@@ -6,20 +6,29 @@ $(document).ready(function () {
 
 /*공민영*/
 function btn_background() {
-    fetch("/")
-        .then((res) => res.json())
-        .then((data) => {
+    const img = document.getElementById("myImage");
+    if (img.src.match("image1")) {
+        img.src = "image2.jpg";
+    } else {
+        img.src = "image1.jpg";
+    }
 
-            let rows = ['../img/star.png', '../img/sea.png', '../img/tree.png']
-            rows.forEach((a) => {
-                let temp_html = `<div id="btn_img" src="${a}"></div>`
-                $("#btn_img").append(temp_html);
-            });
-
-            console.log(data);
-            alert("버튼을 눌렀습니다");
-        });
 }
+
+/*슬라이드를 다시 뒤로 보내는 것*/
+//index.html의 teamcontents/ 일치하는 요소를 들고와라
+let backteam = document.querySelector(".team");
+//스크롤이벤트가 나타날때마다 함수를 호출하겠다
+window.addEventListener("scroll", function () {
+    //스크롤의 높이를 가져오는것
+    let value = window.scrollY;
+    console.log("scrollY", value);
+    //스크롤 높이에 따라 애니메이션이벤트 발생
+    if (value > 400) {
+        backteam.style.transition = "backslide 1s ease-out"
+    }
+
+})
 
 
 /*---양예린---*/

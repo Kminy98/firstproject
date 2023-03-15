@@ -5,29 +5,6 @@
 }
 
 
- /* 배경 이미지 설정 */
- body {
-    background-image: url('../img/star.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-
-  
-  /* 배경을 덮을 div 요소 
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease-out;
-    z-index: 999;
-  }*/
-
 
 
 
@@ -40,13 +17,13 @@
     justify-content: center; /* 수평 중앙 정렬 */
     align-items: center;/* 수직 중앙 정렬 */
     color: rgb(254, 229, 153);
-
+    background: url('../img/star.png') fixed;
 
 }
 
 .horizmain {
     display: flex;
-    justify-content: center
+    justify-content: center;
 }
 
 .teammain h1{
@@ -59,7 +36,7 @@
 
 }
 
-#btn_member {
+#btn_home {
     display: flex;
     padding: 10px 20px;
     background-color:rgb(255, 247, 221);
@@ -71,7 +48,7 @@
     transition: background-color 0.3s ease;
 }
 
-#btn_member:hover {
+#btn_home:hover {
     color: rgb(144, 206, 144);
   }
 
@@ -85,7 +62,9 @@
 
     /*세로 가운데*/
     display: flex;
-    align-items: center;
+    flex-direction: column;/*부모div 안 자식요소를 수직으로 정렬*/
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;/* 수직 중앙 정렬 */
 
     background-color: rgb(254, 229, 153);
 }
@@ -93,72 +72,137 @@
 .teamtitle {
     padding: 10px;
     color: #5c5b55; /* 텍스트 색상 */
-    line-height: 1.5; /* 텍스트 줄 간격 */
+    font-size: 50px;
+    /*두개의 div를 겹치게 만든다음 hover시 
+    색의 변화를 줘서 글자가 바뀌는 것같은 효과를 줌*/
+    position: relative;
 }
-.teamcontent {
-    padding: 20px;
+.teamcontent{
+    padding: 5px;
+    font-size: 25px;
     line-height: 2.5; /* 텍스트 줄 간격 */
-
+    /*두개의 div를 겹치게 만든다음 hover시 
+    색의 변화를 줘서 글자가 바뀌는 것같은 효과를 줌*/
+    position: absolute;
+    opacity: 0;
 }
+
 
 .team h1 {
     color: white;
 
 }
-
+/*team123의 부모*/
 .teamcontents {
     height: 600px;
     padding: 10px;
     padding-top: 30px;
     /*가로*/
-    text-align: center;
-    
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
+    animation: slide 2s ease-out;
+
 }
 
 #team1 {
     width: 400px;
-    height: 400px;
-    border-radius: 50%;
+    height: 300px;
+    border-radius: 20px 100px 100px 20px;
     border: 10px solid;
-    border-color: rgb(254, 229, 153);
     background-color: white;
+    border-color: rgb(254, 229, 153);
     padding: 10px;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 25px 0 200px;
+}
+
+#team1:hover{
+    background-color: rgb(254, 229, 153);
+
+}
+#team1:hover .teamcontent{
+    opacity: 1;
+}
+#team1:hover .teamtitle{
+    background-color: rgb(254, 229, 153);
+    opacity: 0;
 }
 
 #team2 {
     width: 400px;
-    height: 400px;
-    border-radius: 50%;
+    height: 300px;
+    border-radius: 20px 100px 100px 20px;
     border: 10px solid;
-    border-color: rgb(254, 229, 153);
     background-color: white;
+    border-color: rgb(254, 229, 153);
     padding: 10px;
-    display: inline-block;
-    margin: auto 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 25px 0 25px;
 
-    position: absolute;
-    top: 50%;
-    left: 47%;
-    transform: translate(-50%, -50%);
+}
+
+#team2:hover{
+    background-color: rgb(254, 229, 153);
+
+}
+#team2:hover .teamcontent{
+    opacity: 1;
+}
+#team2:hover .teamtitle{
+    background-color: rgb(254, 229, 153);
+    opacity: 0;
 }
 
 #team3 {
     width: 400px;
-    height: 400px;
-    border-radius: 50%;
+    height: 300px;
+    border-radius: 20px 100px 100px 20px;
     border: 10px solid;
+    background-color: white;
     border-color: rgb(254, 229, 153);
     padding: 10px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 200px 0 25px;
+}
 
-    position: absolute;
-    top: 50%;
-    left: 80%;
-    transform: translate(-50%, -50%);
+#team3:hover{
+    background-color: rgb(254, 229, 153);
+
+}
+#team3:hover .teamcontent{
+    opacity: 1;
+}
+#team3:hover .teamtitle{
+    background-color: rgb(254, 229, 153);
+    opacity: 0;
+}
+
+/*나타나는 슬라이드 애니메이션*/
+@keyframes slide {
+    from{
+        margin-left:-300px;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/*사라지는 슬라이드 애니메이션*/
+@keyframes backslide {
+    from{
+        opacity: 1;
+    }
+    to {
+        margin-left:-300px;
+        opacity: 0;
+    }
 }
