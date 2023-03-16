@@ -1,6 +1,5 @@
 $(document).ready(function () {
     show_comment();
-<<<<<<< HEAD
 /*공민영 css 변경*/
 /*버튼을 눌러서 class이름 바꾸기*/
 /*toggleClass 잇음 지우고 없음 채우고,,?*/
@@ -9,9 +8,6 @@ $(document).ready(function () {
 let teamclass = document.querySelector("#bodymain"); //id값이 bodymain인
 let nowclass = document.querySelector("#bodymain").classList //현재 class를 nowclass에 저장
 let classes = ['bodymain1','bodymain2','bodymain3','bodymain4','bodymain5','bodymain6','bodymain7'] //클래스 안에 클래스명들을 넣고
-=======
-    show_like()
->>>>>>> b19234d08c9e54ae2077138ca1215433c5392293
 
 let randomClass = classes[Math.floor(Math.random() * classes.length)]; //랜덤돌리고
    teamclass.classList.remove(...teamclass.classList); //클래스들을 다 지우고
