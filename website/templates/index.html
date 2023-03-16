@@ -164,7 +164,7 @@
                             <div id="likeCount1">
                                 <p>0</p>
                             </div>
-                            <button class='unlike' id="unlike-button1" >😢좋아요 취소</button>
+                            <button class='unlike' id="unlike-button1" onclick="unlike1()">😢좋아요 취소</button>
                         </div>
                     </div>
                 </div>
@@ -194,13 +194,15 @@
                         <div class="modal-footer">
                             <button class='like' id="like-button2" onclick="checkResult2()">👍좋아요</button>
                             <p id="likeCount2">0</p>
-                            <button class='unlike' id="unlike-button2" >😢좋아요 취소</button>
+                            <button class='unlike' id="unlike-button2" onclick="unlike2()">😢좋아요 취소</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="Modal3" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+
+
+        <div class=" modal fade" id="Modal3" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -224,46 +226,45 @@
                         <div class="modal-footer">
                             <button class='like' id="like-button3" onclick="checkResult3()">👍좋아요</button>
                             <p id="likeCount3">0</p>
-                            <button class='unlike' id="unlike-button3" >😢좋아요 취소</button>
+                            <button class='unlike' id="unlike-button3" onclick="unlike3()">😢좋아요 취소</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--정승호-->
+        <div id=" comment-wrap">
+            <h1>방명록</h1>
+            <table class="table table-striped" id="comment_table">
+                <thead>
+                    <tr>
+                        <th>no.</th>
+                        <th>작성자</th>
+                        <th>내용</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
 
-<!--정승호-->
-<div id="comment-wrap">
-    <h1>방명록</h1>
-    <table class="table table-striped" id="comment_table">
-        <thead>
-            <tr>
-                <th>no.</th>
-                <th>작성자</th>
-                <th>내용</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-    <div class="cmt_wrap">
-        <div id="user_data">
-            <div>
-                <input id="id" class="form-control form-control-sm" type="text" placeholder="닉네임"
-                    aria-label=".form-control-sm example">
-            </div>
-            <div>
-                <input id="pw" class="form-control form-control-sm" type="password" placeholder="비밀번호"
-                    aria-label=".form-control-sm example">
+                </tbody>
+            </table>
+            <div class="cmt_wrap">
+                <div id="user_data">
+                    <div>
+                        <input id="id" class="form-control form-control-sm" type="text" placeholder="닉네임"
+                            aria-label=".form-control-sm example">
+                    </div>
+                    <div>
+                        <input id="pw" class="form-control form-control-sm" type="password" placeholder="비밀번호"
+                            aria-label=".form-control-sm example">
+                    </div>
+                </div>
+                <div id="comment_detail">
+                    <textarea class="form-control comment" placeholder="코멘트를 남겨주세요" id="floatingTextarea"></textarea>
+                </div>
+                <input class="btn btn-primary save_btn" type="submit" value="등록하기" onclick="submit()">
             </div>
         </div>
-        <div id="comment_detail">
-            <textarea class="form-control comment" placeholder="코멘트를 남겨주세요" id="floatingTextarea"></textarea>
-        </div>
-        <input class="btn btn-primary save_btn" type="submit" value="등록하기" onclick="submit()">
-    </div>
-</div>
 
         <!-- footer -->
         <div class="container">

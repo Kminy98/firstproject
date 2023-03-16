@@ -25,21 +25,17 @@ function btn_background() {
 
 /*---양예린---*/
 function checkResult1() {
-    let likeCount1 = parseInt(document.getElementById("likeCount1").textContent);
-
     var button = document.getElementById("like-button1");
     if (button.innerHTML === "👍좋아요") {
         button.innerHTML = "🤍";
         $('#like-button1').css('background-color', 'rgb(219,53,69)')
         $('#like-button1').css('color', 'white')
         $('#like-button1').css('width', '50px')
-        document.getElementById("likeCount1").textContent = likeCount1.toString();
     } else {
         button.innerHTML = "🤍";
         $('#like-button1').css('background-color', 'rgb(219,53,69)')
         $('#like-button1').css('color', 'white')
         $('#like-button1').css('width', '50px')
-        document.getElementById("likeCount1").textContent = likeCount1.toString();
     }
     let like = 'user1'
 
@@ -47,10 +43,10 @@ function checkResult1() {
     formData.append("like1_give", like)
 
     fetch('/like', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-        alert(data["msg"])
-
+        alert(data['msg'])
+        show_like()
     })
-    show_like()
+    
 }
 
 
@@ -60,49 +56,104 @@ function show_like() {
         
         result.forEach((a) => {
             let like = a['count']
-            $('#likeCount1').text(like)
+            let user = a['user']
+            if(user=='user1'){
+                $('#likeCount1').text(like)
+            }else if(user=='user2'){
+                $('#likeCount2').text(like)
+            }else{
+                $('#likeCount3').text(like)
+            }
 
-        })})
+        })
+    })
         
 }
 
 function checkResult2() {
-    let likeCount2 = parseInt(document.getElementById("likeCount2").textContent);
-
     var button = document.getElementById("like-button2");
     if (button.innerHTML === "👍좋아요") {
         button.innerHTML = "🤍";
         $('#like-button2').css('background-color', 'rgb(219,53,69)')
         $('#like-button2').css('color', 'white')
         $('#like-button2').css('width', '50px')
-        document.getElementById("likeCount2").textContent = likeCount2.toString();
     } else {
         button.innerHTML = "🤍";
         $('#like-button2').css('background-color', 'rgb(219,53,69)')
         $('#like-button2').css('color', 'white')
         $('#like-button2').css('width', '50px')
-        document.getElementById("likeCount2").textContent = likeCount2.toString();
     }
+    let like = 'user2'
+
+    let formData = new FormData()
+    formData.append("like1_give", like)
+    
+    fetch('/like', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+        alert(data['msg'])
+        show_like()
+    })
 }
 function checkResult3() {
-    let likeCount3 = parseInt(document.getElementById("likeCount3").textContent);
-
     var button = document.getElementById("like-button3");
     if (button.innerHTML === "👍좋아요") {
         button.innerHTML = "🤍";
         $('#like-button3').css('background-color', 'rgb(219,53,69)')
         $('#like-button3').css('color', 'white')
         $('#like-button3').css('width', '50px')
-        document.getElementById("likeCount3").textContent = likeCount3.toString();
     } else {
         button.innerHTML = "🤍";
         $('#like-button3').css('background-color', 'rgb(219,53,69)')
         $('#like-button3').css('color', 'white')
         $('#like-button3').css('width', '50px')
-        document.getElementById("likeCount3").textContent = likeCount3.toString();
     }
+    let like = 'user3'
+
+    let formData = new FormData()
+    formData.append("like1_give", like)
+    
+    fetch('/like', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+        alert(data['msg'])
+        show_like()
+    })
 }
 
+
+
+
+
+function unlike1(){
+    let hate = 'user1'
+
+    let formData = new FormData()
+    formData.append("hate_give", hate)
+
+    fetch('/unlike', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+        alert(data['msg'])
+        show_like()
+    })
+}
+function unlike2(){
+    let hate = 'user2'
+
+    let formData = new FormData()
+    formData.append("hate_give", hate)
+
+    fetch('/unlike', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+        alert(data['msg'])
+        show_like()
+    })
+}
+function unlike3(){
+    let hate = 'user3'
+
+    let formData = new FormData()
+    formData.append("hate_give", hate)
+
+    fetch('/unlike', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+        alert(data['msg'])
+        show_like()
+    })
+}
 
 
 // let a = "😢좋아요 취소"
@@ -131,6 +182,7 @@ function show_comment() {
             $('#comment_table>tbody').append(temp_html)
         })
     })
+    
 }
 
 function submit() {
