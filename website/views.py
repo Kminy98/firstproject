@@ -15,24 +15,44 @@ def home():
 # test
 
  #-----양예린----  
-@app.route("/member", methods=["POST"])
+@app.route("/like", methods=["POST"])
 def member_post():
-    likeCount1_receive = request.form['likeCount1_give']
-    likeCount2_receive = request.form['likeCount2_give']
-    likeCount3_receive = request.form['likeCount3_give']
-    likeCount4_receive = request.form['likeCount4_give']
-    
-    doc = {
-        'likeCount1':likeCount1_receive
-          }
-    db.likeCount.insert_one(doc)
+    like1_receive = request.form['like1_give']
+    user_ip = request.remote_addr
+    find_ip = db.ip_address.find_one({'like_user':like1_receive,'ip_address':user_ip})
+    if find_ip:
+         return jsonify({'msg':'동일 ip에서 좋아요는 1번만 가능합니다!'})
+    else:
+        doc = {
+            'like_user':like1_receive,
+            "ip_address":user_ip
+        }
+        db.ip_address.insert_one(doc)
+        db.likes.update_one({'user':like1_receive},{'$inc':{'count':1}})
+        return jsonify({'msg':'좋아요 완료!'})
+   
+    # like1_receive = request.form['like1_give']
+    # db.likes.update_one({'user':like1_receive},{'$inc':{'count':1}})
+    # return jsonify({'msg':'POST 연결 완료!'})
 
+@app.route("/like", methods=["GET"])
+def like_get():
+    like1_count = list(db.likes.find({}, {'_id':False}))
+    return jsonify({'result': like1_count})
     
-    return jsonify({'msg':'POST 연결 완료!'})
+@app.route("/unlike", methods=["POST"])
+def hate():
+    hate_receive = request.form['hate_give']
+    user_ip = request.remote_addr
+    find_ip = db.ip_address.find_one({'like_user':hate_receive,'ip_address':user_ip})
+    if find_ip:
+        db.ip_address.delete_one({'like_user':hate_receive,'ip_address':user_ip})
+        db.likes.update_one({'user':hate_receive},{'$inc':{'count':-1}})
+        return jsonify({'msg':'좋아요 취소 완료!'})
+    else:
+        return jsonify({'msg':'좋아요를 누르지 않으셨습니다!'})
 
-@app.route("/member", methods=["GET"])
-def member_get():
-    return jsonify({'msg':'GET 연결 완료!'})
+
 
 
 #--정승호--
