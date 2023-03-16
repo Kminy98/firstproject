@@ -1,25 +1,68 @@
 $(document).ready(function () {
-    btn_background();
     show_comment();
+/*공민영 css 변경*/
+/*버튼을 눌러서 class이름 바꾸기*/
+/*toggleClass 잇음 지우고 없음 채우고,,?*/
+/*슬라이드를 앞뒤로 보내는 것*/
+//처음부터 지정되어있는 class를 가져오지않고 랜덤으로 보여줌
+let teamclass = document.querySelector("#bodymain"); //id값이 bodymain인
+let nowclass = document.querySelector("#bodymain").classList //현재 class를 nowclass에 저장
+let classes = ['bodymain1','bodymain2','bodymain3','bodymain4','bodymain5','bodymain6','bodymain7'] //클래스 안에 클래스명들을 넣고
 
+let randomClass = classes[Math.floor(Math.random() * classes.length)]; //랜덤돌리고
+   teamclass.classList.remove(...teamclass.classList); //클래스들을 다 지우고
+   teamclass.classList.add(randomClass); //랜덤으로 생성된 클래스의 인덱스값을 가져옴
+
+     $('#btn_home').on('click',function() { //클릭시 발생
+        
+         let teamclass = document.querySelector("#bodymain"); //id값이 bodymain인
+         let nowclass = document.querySelector("#bodymain").classList //현재 class를 nowclass에 저장
+         let classes = ['bodymain1','bodymain2','bodymain3','bodymain4','bodymain5','bodymain6','bodymain7'] //클래스 안에 클래스명들을 넣고
+         
+         let randomClass = classes[Math.floor(Math.random() * classes.length)]; //랜덤돌리고
+         while (randomClass==nowclass) { //똑같은지 확인하고 똑같으면
+            randomClass = classes[Math.floor(Math.random() * classes.length)]; //다시 랜덤돌리고 while로 가서 반복(조건에 맞지 않을때까지)
+
+         }  
+            teamclass.classList.remove(...teamclass.classList); //클래스들을 다 지우고
+            teamclass.classList.add(randomClass); //랜덤으로 생성된 클래스의 인덱스값을 가져옴
+            console.log(randomClass);
+         
+
+         })
 });
 
-/*공민영*/
-function btn_background() {
-    fetch("/")
-        .then((res) => res.json())
-        .then((data) => {
 
-            let rows = ['../img/star.png', '../img/sea.png', '../img/tree.png']
-            rows.forEach((a) => {
-                let temp_html = `<div id="btn_img" src="${a}"></div>`
-                $("#btn_img").append(temp_html);
-            });
+//스크롤이벤트가 나타날때마다 함수를 호출하겠다
+window.addEventListener("scroll", function () {
+    //index.html의 teamcontents/ 일치하는 요소를 들고와라
+    let backteam = document.querySelector(".teamcontents"); //팀목표,팀약속,팀규칙
+    let backhello = document.querySelector("#teammain"); //welcome
+    let showteam = document.querySelector(".team"); //소개합니다
+    //스크롤의 높이를 가져오는것
+    let value = window.scrollY;
+    console.log("scrollY", value);
+    //스크롤 높이에 따라 애니메이션이벤트 발생
+    //forwards 한번가면 안돌아옴
 
-            console.log(data);
-            alert("버튼을 눌렀습니다");
-        });
-}
+    if(value > 280 && value < 550) {
+        showteam.style.animation = "showtext 3s ease-out"; //소개합니다가 나타남
+    } else {
+        showteam.style.animation = "hidetext 2s ease-out forwards"; //소개합니다가 사라짐
+    }
+    if (value > 1100 || value < 300) {
+        backteam.style.animation = "backslide 1s ease-out forwards" //팀규칙 등이 옆으로 사라짐
+    } else if(value > 410) {
+        backteam.style.animation = "slide 2s ease-out"; //팀규칙 등이 옆에서 나타남
+    }
+    if(value > 200) {
+        backhello.style.animation = "uphello 2s ease-out forwards"; //welcome이 위로 올라가면서 사라짐
+    } else  {
+        backhello.style.animation = "downhello 2s ease-out"; //welcome이 아래로 내려오면서 나타남
+    }
+})
+
+
 
 
 /*---양예린---*/
