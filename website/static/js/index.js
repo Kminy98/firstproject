@@ -1,6 +1,7 @@
 $(document).ready(function () {
     btn_background();
     show_comment();
+    show_like()
 
 });
 
@@ -28,38 +29,58 @@ function checkResult1() {
 
     var button = document.getElementById("like-button1");
     if (button.innerHTML === "👍좋아요") {
-        button.innerHTML = "😢좋아요 취소";
+        button.innerHTML = "🤍";
         $('#like-button1').css('background-color', 'rgb(219,53,69)')
         $('#like-button1').css('color', 'white')
-        $('#like-button1').css('width', '110px')
-        likeCount1++;
+        $('#like-button1').css('width', '50px')
         document.getElementById("likeCount1").textContent = likeCount1.toString();
     } else {
-        button.innerHTML = "👍좋아요";
-        $('#like-button1').css('background-color', 'white')
-        $('#like-button1').css('color', 'rgb(219,53,69)')
-        $('#like-button1').css('width', '100px')
-        likeCount1--;
+        button.innerHTML = "🤍";
+        $('#like-button1').css('background-color', 'rgb(219,53,69)')
+        $('#like-button1').css('color', 'white')
+        $('#like-button1').css('width', '50px')
         document.getElementById("likeCount1").textContent = likeCount1.toString();
     }
+    let like = 'user1'
+
+    let formData = new FormData()
+    formData.append("like1_give", like)
+
+    fetch('/like', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+        alert(data["msg"])
+
+    })
+    show_like()
 }
+
+
+function show_like() {
+    fetch('/like').then((res) => res.json()).then((data) => {
+        let result = data['result']
+        
+        result.forEach((a) => {
+            let like = a['count']
+            $('#likeCount1').text(like)
+
+        })})
+        
+}
+
 function checkResult2() {
     let likeCount2 = parseInt(document.getElementById("likeCount2").textContent);
 
     var button = document.getElementById("like-button2");
     if (button.innerHTML === "👍좋아요") {
-        button.innerHTML = "😢좋아요 취소";
+        button.innerHTML = "🤍";
         $('#like-button2').css('background-color', 'rgb(219,53,69)')
         $('#like-button2').css('color', 'white')
-        $('#like-button2').css('width', '110px')
-        likeCount2++;
+        $('#like-button2').css('width', '50px')
         document.getElementById("likeCount2").textContent = likeCount2.toString();
     } else {
-        button.innerHTML = "👍좋아요";
-        $('#like-button2').css('background-color', 'white')
-        $('#like-button2').css('color', 'rgb(219,53,69)')
-        $('#like-button2').css('width', '100px')
-        likeCount2--;
+        button.innerHTML = "🤍";
+        $('#like-button2').css('background-color', 'rgb(219,53,69)')
+        $('#like-button2').css('color', 'white')
+        $('#like-button2').css('width', '50px')
         document.getElementById("likeCount2").textContent = likeCount2.toString();
     }
 }
@@ -68,41 +89,21 @@ function checkResult3() {
 
     var button = document.getElementById("like-button3");
     if (button.innerHTML === "👍좋아요") {
-        button.innerHTML = "😢좋아요 취소";
+        button.innerHTML = "🤍";
         $('#like-button3').css('background-color', 'rgb(219,53,69)')
         $('#like-button3').css('color', 'white')
-        $('#like-button3').css('width', '110px')
-        likeCount3++;
+        $('#like-button3').css('width', '50px')
         document.getElementById("likeCount3").textContent = likeCount3.toString();
     } else {
-        button.innerHTML = "👍좋아요";
-        $('#like-button3').css('background-color', 'white')
-        $('#like-button3').css('color', 'rgb(219,53,69)')
-        $('#like-button3').css('width', '100px')
-        likeCount3--;
+        button.innerHTML = "🤍";
+        $('#like-button3').css('background-color', 'rgb(219,53,69)')
+        $('#like-button3').css('color', 'white')
+        $('#like-button3').css('width', '50px')
         document.getElementById("likeCount3").textContent = likeCount3.toString();
     }
 }
-function checkResult4() {
-    let likeCount4 = parseInt(document.getElementById("likeCount4").textContent);
 
-    var button = document.getElementById("like-button4");
-    if (button.innerHTML === "👍좋아요") {
-        button.innerHTML = "😢좋아요 취소";
-        $('#like-button4').css('background-color', 'rgb(219,53,69)')
-        $('#like-button4').css('color', 'white')
-        $('#like-button4').css('width', '110px')
-        likeCount1++;
-        document.getElementById("likeCount4").textContent = likeCount4.toString();
-    } else {
-        button.innerHTML = "👍좋아요";
-        $('#like-button4').css('background-color', 'white')
-        $('#like-button4').css('color', 'rgb(219,53,69)')
-        $('#like-button4').css('width', '100px')
-        likeCount1--;
-        document.getElementById("likeCount4").textContent = likeCount4.toString();
-    }
-}
+
 
 // let a = "😢좋아요 취소"
 // let b = "👍좋아요"
