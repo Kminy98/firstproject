@@ -126,4 +126,4 @@ def comment_edit():
     return jsonify({'msg': '수정 완료!'})
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run(127.0.0.1', port=5000, debug=True)
